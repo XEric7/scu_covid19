@@ -18,7 +18,7 @@ elif state=="school":
 
 
 cookies_str=""  #登陆后的cookie信息
-api_key = "SCT66990TERKRipWCNOiUk7OUSdbXZKtW"  # server酱的api，填了可以微信通知打卡结果，不填没影响
+api_key = ""  # server酱的api，填了可以微信通知打卡结果，不填没影响
 
 #将str类型cookies转换未dict类型
 cookies_dict={}
