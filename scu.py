@@ -7,28 +7,24 @@ from datetime import datetime
 
 s = requests.Session()
 
-state="home"
+
 #填写地址信息，开发人员工具中对"https://wfw.scu.edu.cn/ncov/wap/default/save"的post请求可以查到
+state="school"
 if state=="home":
     geo_api_info=''
-    address=''
-    area=""
 elif state=="school":
-    geo_api_info=''
-    address=''
-    area=''
+    geo_api_info='{"type":"complete","info":"SUCCESS","status":1,"cEa":"jsonp_867871_","position":{"Q":30.55209,"R":103.99365,"lng":103.99365,"lat":30.55209},"message":"Get ipLocation success.Get address success.","location_type":"ip","accuracy":null,"isConverted":true,"addressComponent":{"citycode":"028","adcode":"510116","businessAreas":[{"name":"白家","id":"510116","location":{"Q":30.562482,"R":104.006821,"lng":104.006821,"lat":30.562482}}],"neighborhoodType":"","neighborhood":"","building":"","buildingType":"","street":"川大路三段","streetNumber":"363号","country":"中国","province":"四川省","city":"成都市","district":"双流区","township":"西航港街道"},"formattedAddress":"四川省成都市双流区西航港街道三八广场四川大学江安校区","roads":[],"crosses":[],"pois":[]}'
     
 
 
 cookies_str=""  #登陆后的cookie信息
-api_key = ""  # server酱的api，填了可以微信通知打卡结果，不填没影响
+api_key = "SCT66990TERKRipWCNOiUk7OUSdbXZKtW"  # server酱的api，填了可以微信通知打卡结果，不填没影响
 
-
+#将str类型cookies转换未dict类型
 cookies_dict={}
 for cookie in cookies_str.split('; '):
     cookies_dict[cookie.split('=')[0]]=cookie.split('=')[-1]
     
-
 
 
 def get_daily(s: requests.Session):
@@ -61,9 +57,9 @@ def submit(s: requests.Session, old: dict):
         'qksm':old['qksm'],#情况说明
         'jcjgqr':old['jcjgqr'],#检查结果
         'remark':old['remark'],#其他信息
-        'address':address,
+        'address':old['address'],
         'geo_api_info': geo_api_info,
-        'area':area,
+        'area':old['area'],
         'province':old['province'],
         'city':old['city'],
         'sfzx':old['sfzx'],         #是否在校
